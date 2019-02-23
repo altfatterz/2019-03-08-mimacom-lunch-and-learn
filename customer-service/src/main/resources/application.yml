@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: customer-service
+
+  datasource:
+    platform: h2
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+
+
+management:
+  endpoints:
+    web:
+      exposure.include: '*'
+
+server:
+  port: 8080
+
+logging.level:
+  org.hibernate:
+    SQL: DEBUG
+
+
