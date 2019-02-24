@@ -1,9 +1,8 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
 import com.mimacom.lunchandlearn.address.CustomerAddressRestController;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +47,7 @@ public class CustomerRestController {
                         .city(customer.getCity())
                         .build())
                 .contract(CustomerResource.Contract.builder()
+                        .validFrom(customer.getContract().getValidFrom())
                         .products(customer.getContract().getProducts())
                         .build())
                 .build();

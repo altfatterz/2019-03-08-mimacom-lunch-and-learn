@@ -1,11 +1,11 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
+import java.util.Arrays;
 
 @Component
 public class ContractServiceClient {
@@ -24,6 +24,6 @@ public class ContractServiceClient {
     }
 
     public Contract reliable(Long customerId) {
-        return new Contract(Collections.emptyList());
+        return new Contract(null, Arrays.asList());
     }
 }

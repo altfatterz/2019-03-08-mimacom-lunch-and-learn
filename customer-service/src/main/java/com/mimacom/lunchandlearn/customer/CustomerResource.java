@@ -1,5 +1,6 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
+import com.mimacom.lunchandlearn.customer.Customer.Gender;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.hateoas.ResourceSupport;
@@ -42,6 +43,8 @@ public class CustomerResource extends ResourceSupport {
     @Data
     @Builder
     static class Contract {
+
+        private LocalDate validFrom;
 
         private List<String> products;
     }

@@ -1,4 +1,4 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,8 +48,13 @@ public class Customer {
     @AllArgsConstructor
     static class Contract {
 
+        private LocalDate validFrom;
+
         private List<String> products;
 
     }
 
+    enum Gender {
+        MALE, FEMALE
+    }
 }

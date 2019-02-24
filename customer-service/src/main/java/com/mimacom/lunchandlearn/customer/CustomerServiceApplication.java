@@ -1,4 +1,4 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

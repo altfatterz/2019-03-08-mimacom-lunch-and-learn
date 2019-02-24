@@ -1,4 +1,4 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,33 +1,46 @@
 package com.mimacom.lunchandlearn;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.util.List;
 
-@Getter
+@Data
+@Builder
 public class Contract {
 
     @Id
     private String id;
 
+    private LocalDate validFrom;
+
     private Long customerId;
 
     private List<Product> products;
 
-    public Contract(Long customerId, List<Product> products) {
-        this.customerId = customerId;
-        this.products = products;
-    }
-
-    @Getter
-    @AllArgsConstructor
+    @Data
+    @Builder
+    @JsonInclude(Include.NON_NULL)
     static class Product {
 
         private String name;
 
-        private double price;
+        private String description;
+
+        private String type;
+
+        private Boolean isBasic;
+
+        private Double price;
+
+        private Integer deductible;
+
+        private Boolean withAccidentCover;
 
     }
+
 }

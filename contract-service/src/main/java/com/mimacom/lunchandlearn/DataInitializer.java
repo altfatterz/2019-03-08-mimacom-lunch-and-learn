@@ -1,11 +1,14 @@
 package com.mimacom.lunchandlearn;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.mimacom.lunchandlearn.Contract.Product;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.UUID;
 
 @Component
 public class DataInitializer {
@@ -19,16 +22,45 @@ public class DataInitializer {
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
         contractRepository.save(new Contract(
+                UUID.randomUUID().toString(),
+                LocalDate.of(2017, 1, 3),
                 1L,
                 Arrays.asList(
-                    new Product("Basic health insurance casamed family doctor", 295.60),
-                    new Product("Supplementary outpatient insurance plus", 19.60),
-                    new Product("Supplementary hospital insurance hospita general", 9.40),
-                    new Product("Supplementary dental insurance dental", 26.00),
-                    new Product("Legal expenses insurance in health matters protect", 1.50)
-                )
-                ));
+                        Product.builder()
+                                .name("Basic health insurance")
+                                .type("FAMILY_DOCTOR_MODEL")
+                                .isBasic(true)
+                                .description("If you’re ill, always go to your chosen family doctor first.")
+                                .price(295.60)
+                                .deductible(2500)
+                                .withAccidentCover(true)
+                                .build(),
+                        Product.builder()
+                                .name("Supplementary outpatient insurance")
+                                .type("PLUS")
+                                .description("Considerable contributions for medications not covered by statutory health insurance, transport and rescue costs and other outpatient services.")
+                                .price(19.60)
+                                .build(),
+                        Product.builder()
+                                .name("Supplementary hospital insurance")
+                                .type("HOSPITA_FLEX")
+                                .description("Multiple occupancy rooms across Switzerland")
+                                .price(9.40)
+                                .build(),
+                        Product.builder()
+                                .name("Supplementary dental insurance")
+                                .type("DENTAL")
+                                .description("Coverage 50%, max. CHF 1000")
+                                .price(26.00)
+                                .build(),
+                        Product.builder()
+                                .name("Legal expenses insurance in health matters")
+                                .type("PROTECT")
+                                .description("Protection in legal disputes with medical service providers regarding health insurance")
+                                .price(1.50)
+                                .build())
 
+        ));
     }
 }
 

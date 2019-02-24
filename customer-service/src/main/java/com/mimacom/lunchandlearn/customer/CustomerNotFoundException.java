@@ -1,4 +1,4 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
 public class CustomerNotFoundException extends Exception {
 

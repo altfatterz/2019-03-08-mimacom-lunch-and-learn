@@ -1,4 +1,4 @@
-package com.mimacom.lunchandlearn;
+package com.mimacom.lunchandlearn.customer;
 
 import org.springframework.stereotype.Service;
 
@@ -23,11 +23,14 @@ public class CustomerService {
             throw new CustomerNotFoundException("customer with id '" + customerId + "' not found");
         }
         Contract contract = contractServiceClient.getContract(customerId);
-        List<String> products = contract.getProducts().stream()
-                .map(product -> product.getName() + " --- CHF " + product.getPrice())
-                .collect(Collectors.toList());
-        customer.setContract(new Customer.Contract(products));
-        // put contract information into customer
+        customer.setContract(mapContract(contract));
         return customer;
+    }
+
+    private Customer.Contract mapContract(Contract contract) {
+        List<String> products = contract.getProducts().stream()
+                .map(product -> product.getName() + " " + product.getType() + " --- CHF " + product.getPrice())
+                .collect(Collectors.toList());
+        return new Customer.Contract(contract.getValidFrom(), products);
     }
 }
