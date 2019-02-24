@@ -1,0 +1,9 @@
+eureka:
+  client:
+    enabled: false
+
+spring:
+  cloud:
+    circuit:
+      breaker:
+        enabled: false

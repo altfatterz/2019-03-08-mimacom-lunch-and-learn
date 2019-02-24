@@ -38,7 +38,7 @@ public class DataInitializer {
                         Product.builder()
                                 .name("Supplementary outpatient insurance")
                                 .type("PLUS")
-                                .description("Considerable contributions for medications not covered by statutory health insurance, transport and rescue costs and other outpatient services.")
+                                .description("Basic supplementary insurance for preventative measures, spectacles, sport and more")
                                 .price(19.60)
                                 .build(),
                         Product.builder()

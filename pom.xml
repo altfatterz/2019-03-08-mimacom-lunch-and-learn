@@ -12,8 +12,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>customer-service</module>
         <module>contract-service</module>
+        <module>customer-service</module>
     </modules>
 
 </project>
