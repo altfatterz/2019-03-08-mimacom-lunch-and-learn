@@ -1,6 +1,6 @@
 package com.mimacom.lunchandlearn.customer;
 
-import com.mimacom.lunchandlearn.address.CustomerAddressRestController;
+import com.mimacom.lunchandlearn.address.AddressUpdateRestController;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,7 +27,7 @@ public class CustomerRestController {
         Customer customer = customerService.getCustomer(customerId);
         CustomerResource customerResource = buildCustomerResource(customer);
 
-        customerResource.add(ControllerLinkBuilder.linkTo(methodOn(CustomerAddressRestController.class)
+        customerResource.add(ControllerLinkBuilder.linkTo(methodOn(AddressUpdateRestController.class)
                 .updateCustomerAddress(customerId, null)).withRel("update-address"));
 
         return customerResource;

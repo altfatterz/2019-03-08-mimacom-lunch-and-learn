@@ -1,9 +1,9 @@
 package com.mimacom.lunchandlearn.address;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @AllArgsConstructor
 public class AddressUpdateRequest {
 
@@ -11,7 +11,7 @@ public class AddressUpdateRequest {
 
     private final String streetNr;
 
-    private final String zipCode;
+    private final String postCode;
 
     private final String city;
 

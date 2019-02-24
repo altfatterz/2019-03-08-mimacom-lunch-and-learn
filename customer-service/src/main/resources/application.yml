@@ -13,6 +13,12 @@ spring:
     console:
       enabled: true
 
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: customer-updates
+          content-type: application/json
 
 management:
   endpoints:
