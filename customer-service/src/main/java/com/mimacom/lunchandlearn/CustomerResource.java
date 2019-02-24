@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -22,6 +23,8 @@ public class CustomerResource extends ResourceSupport {
 
     private Address address;
 
+    private Contract contract;
+
     @Data
     @Builder
     static class Address {
@@ -36,5 +39,11 @@ public class CustomerResource extends ResourceSupport {
 
     }
 
+    @Data
+    @Builder
+    static class Contract {
+
+        private List<String> products;
+    }
 
 }

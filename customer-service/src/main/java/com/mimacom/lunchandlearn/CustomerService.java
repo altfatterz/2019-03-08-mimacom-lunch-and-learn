@@ -2,6 +2,9 @@ package com.mimacom.lunchandlearn;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CustomerService {
 
@@ -20,6 +23,10 @@ public class CustomerService {
             throw new CustomerNotFoundException("customer with id '" + customerId + "' not found");
         }
         Contract contract = contractServiceClient.getContract(customerId);
+        List<String> products = contract.getProducts().stream()
+                .map(product -> product.getName() + " --- CHF " + product.getPrice())
+                .collect(Collectors.toList());
+        customer.setContract(new Customer.Contract(products));
         // put contract information into customer
         return customer;
     }

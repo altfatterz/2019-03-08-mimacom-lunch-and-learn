@@ -1,9 +1,11 @@
 package com.mimacom.lunchandlearn;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -38,4 +40,16 @@ public class Customer {
     private String postCode;
 
     private String city;
+
+    @Transient
+    private Contract contract;
+
+    @Data
+    @AllArgsConstructor
+    static class Contract {
+
+        private List<String> products;
+
+    }
+
 }

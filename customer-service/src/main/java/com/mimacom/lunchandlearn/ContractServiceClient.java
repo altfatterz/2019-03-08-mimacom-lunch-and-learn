@@ -1,7 +1,11 @@
 package com.mimacom.lunchandlearn;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
 
 @Component
 public class ContractServiceClient {
@@ -12,7 +16,14 @@ public class ContractServiceClient {
         this.restTemplate = restTemplate;
     }
 
+    @HystrixCommand(fallbackMethod = "reliable")
     public Contract getContract(Long customerId) {
-        return null;
+        ResponseEntity<Contract> contract = restTemplate.getForEntity
+                ("http://contract-service/contracts?customerId=" + customerId, Contract.class);
+        return contract.getBody();
+    }
+
+    public Contract reliable(Long customerId) {
+        return new Contract(Collections.emptyList());
     }
 }
