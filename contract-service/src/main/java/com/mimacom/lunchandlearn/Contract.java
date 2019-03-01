@@ -27,6 +27,8 @@ public class Contract {
     @JsonInclude(Include.NON_NULL)
     static class Product {
 
+        private String id;
+
         private String name;
 
         private String description;

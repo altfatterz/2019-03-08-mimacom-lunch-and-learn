@@ -1,6 +1,5 @@
 package com.mimacom.lunchandlearn;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.mimacom.lunchandlearn.Contract.Product;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -21,39 +20,46 @@ public class DataInitializer {
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
+        contractRepository.deleteAll();
+
         contractRepository.save(new Contract(
                 UUID.randomUUID().toString(),
                 LocalDate.of(2017, 1, 3),
                 1L,
                 Arrays.asList(
                         Product.builder()
+                                .id("BASIC")
                                 .name("Basic health insurance")
                                 .type("FAMILY_DOCTOR_MODEL")
                                 .isBasic(true)
                                 .description("If you’re ill, always go to your chosen family doctor first.")
                                 .price(295.60)
                                 .deductible(2500)
-                                .withAccidentCover(true)
+                                .withAccidentCover(false)
                                 .build(),
                         Product.builder()
+                                .id("SUPPLEMENTARY_OUTPATIENT")
                                 .name("Supplementary outpatient insurance")
                                 .type("PLUS")
                                 .description("Basic supplementary insurance for preventative measures, spectacles, sport and more")
                                 .price(19.60)
                                 .build(),
                         Product.builder()
+                                .id("SUPPLEMENTARY_HOSPITAL")
                                 .name("Supplementary hospital insurance")
                                 .type("HOSPITA_FLEX")
                                 .description("Multiple occupancy rooms across Switzerland")
                                 .price(9.40)
                                 .build(),
                         Product.builder()
+                                .id("SUPPLEMENTARY_HOSPITAL")
                                 .name("Supplementary dental insurance")
                                 .type("DENTAL")
                                 .description("Coverage 50%, max. CHF 1000")
                                 .price(26.00)
                                 .build(),
                         Product.builder()
+                                .id("LEGAL")
                                 .name("Legal expenses insurance in health matters")
                                 .type("PROTECT")
                                 .description("Protection in legal disputes with medical service providers regarding health insurance")

@@ -46,7 +46,7 @@ public class AddressUpdateService {
                         .build())
                 .newAddress(Address.builder()
                         .streetName(request.getStreetName())
-                        .streetName(request.getStreetNr())
+                        .streetNr(request.getStreetNr())
                         .city(request.getCity())
                         .postCode(request.getPostCode())
                         .build()

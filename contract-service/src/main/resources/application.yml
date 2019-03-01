@@ -2,5 +2,13 @@ spring:
   application:
     name: contract-service
 
+
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: customer-updates
+
 server:
   port: 9090
+
