@@ -17,10 +17,10 @@ public class ContractRepositoryImpl implements ContractRepositoryCustom {
     }
 
     @Override
-    public void updateProductPrice(Long customerId, String productId, Double value) {
+    public void updateBasicInsurancePrice(Long customerId, Double value) {
 
         Query query = new Query(new Criteria("customerId").is(customerId))
-                .addCriteria(new Criteria("products.id").is("BASIC"));
+                .addCriteria(new Criteria("products.isBasic").is(true));
 
         Update update = new Update().inc("products.$.price", value);
 

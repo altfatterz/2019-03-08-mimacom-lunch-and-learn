@@ -27,10 +27,10 @@ public class AddressUpdateService {
     public void process(AddressUpdateEvent event) {
 
         if (movingFromZurichToBern(event)) {
-            contractRepository.updateProductPrice(event.getCustomerId(), "BASIC", 30.0);
+            contractRepository.updateBasicInsurancePrice(event.getCustomerId(), 30.0);
         }
         if (movingFromBernToZurich(event)) {
-            contractRepository.updateProductPrice(event.getCustomerId(), "BASIC", -30.0);
+            contractRepository.updateBasicInsurancePrice(event.getCustomerId(), -30.0);
         }
 
     }

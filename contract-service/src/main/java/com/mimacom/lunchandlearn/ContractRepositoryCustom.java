@@ -2,5 +2,5 @@ package com.mimacom.lunchandlearn;
 
 public interface ContractRepositoryCustom {
 
-    void updateProductPrice(Long customerId, String productId, Double value);
+    void updateBasicInsurancePrice(Long customerId, Double value);
 }

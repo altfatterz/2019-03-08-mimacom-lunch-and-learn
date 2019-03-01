@@ -30,3 +30,11 @@ echo '{
     }' | http patch :8080/customers/1/address
 ```
 
+```bash
+echo '{
+        "city": "Zurich",
+        "postCode": "8045",
+        "streetName": "Manessestrasse",
+        "streetNr": "87"
+    }' | http patch :8080/customers/1/address
+```

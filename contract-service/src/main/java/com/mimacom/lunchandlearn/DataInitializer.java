@@ -28,7 +28,7 @@ public class DataInitializer {
                 1L,
                 Arrays.asList(
                         Product.builder()
-                                .id("BASIC")
+                                .id(UUID.randomUUID().toString())
                                 .name("Basic health insurance")
                                 .type("FAMILY_DOCTOR_MODEL")
                                 .isBasic(true)
@@ -38,28 +38,28 @@ public class DataInitializer {
                                 .withAccidentCover(false)
                                 .build(),
                         Product.builder()
-                                .id("SUPPLEMENTARY_OUTPATIENT")
+                                .id(UUID.randomUUID().toString())
                                 .name("Supplementary outpatient insurance")
                                 .type("PLUS")
                                 .description("Basic supplementary insurance for preventative measures, spectacles, sport and more")
                                 .price(19.60)
                                 .build(),
                         Product.builder()
-                                .id("SUPPLEMENTARY_HOSPITAL")
+                                .id(UUID.randomUUID().toString())
                                 .name("Supplementary hospital insurance")
                                 .type("HOSPITA_FLEX")
                                 .description("Multiple occupancy rooms across Switzerland")
                                 .price(9.40)
                                 .build(),
                         Product.builder()
-                                .id("SUPPLEMENTARY_HOSPITAL")
+                                .id(UUID.randomUUID().toString())
                                 .name("Supplementary dental insurance")
                                 .type("DENTAL")
                                 .description("Coverage 50%, max. CHF 1000")
                                 .price(26.00)
                                 .build(),
                         Product.builder()
-                                .id("LEGAL")
+                                .id(UUID.randomUUID().toString())
                                 .name("Legal expenses insurance in health matters")
                                 .type("PROTECT")
                                 .description("Protection in legal disputes with medical service providers regarding health insurance")
