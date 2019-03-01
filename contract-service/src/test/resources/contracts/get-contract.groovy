@@ -14,39 +14,40 @@ Contract.make {
             contentType applicationJsonUtf8()
         }
         body(
+
                 products: [
                         [
-                                name             : "Basic health insurance",
-                                description      : "If you’re ill, always go to your chosen family doctor first.",
-                                type             : "FAMILY_DOCTOR_MODEL",
-                                isBasic          : true,
-                                price            : 295.6,
-                                deductible       : 2500,
-                                withAccidentCover: true,
+                                name             : $(nonEmpty()),
+                                description      : $(nonEmpty()),
+                                type             : $(regex('PHARMACY_MODEL|FAMILY_DOCTOR_MODEL|TELMED_MODEL|HMO_MODEL|FREE_CHOICE_OF_DOCTOR')),
+                                isBasic          : $(anyBoolean()),
+                                price            : $(aDouble()),
+                                deductible       : $(anInteger()),
+                                withAccidentCover: $(anyBoolean()),
                         ],
                         [
-                                name       : "Supplementary outpatient insurance",
-                                description: "Basic supplementary insurance for preventative measures, spectacles, sport and more",
-                                type       : "PLUS",
-                                price      : 19.6,
+                                name       : $(nonEmpty()),
+                                description: $(nonEmpty()),
+                                type       : $(regex('PLUS|PREMIUM')),
+                                price      : $(aDouble()),
                         ],
                         [
-                                name       : "Supplementary hospital insurance",
-                                description: "Multiple occupancy rooms across Switzerland",
-                                type       : "HOSPITA_FLEX",
-                                price      : 9.4,
+                                name       : $(nonEmpty()),
+                                description: $(nonEmpty()),
+                                type       : $(regex('HOSPITA_FLEX|HOSPITA_GENERAL|HOSPITA_FLEX_SEMI_PRIVATE|HOSTPITA_FLEX_PRIVATE|HOSPITA_SEMI_PRIVATE|HOSPITA_PRIVATE')),
+                                price      : $(aDouble()),
                         ],
                         [
-                                name       : "Supplementary dental insurance",
-                                description: "Coverage 50%, max. CHF 1000",
-                                type       : "DENTAL",
-                                price      : 26,
+                                name       : $(nonEmpty()),
+                                description: $(nonEmpty()),
+                                type       : $(anyOf('DENTAL')),
+                                price      : $(aDouble()),
                         ],
                         [
-                                name       : "Legal expenses insurance in health matters",
-                                description: "Protection in legal disputes with medical service providers regarding health insurance",
-                                type       : "PROTECT",
-                                price      : 1.5,
+                                name       : $(nonEmpty()),
+                                description: $(nonEmpty()),
+                                type       : $(anyOf('PROTECT')),
+                                price      : $(aDouble()),
                         ]
                 ]
         )
