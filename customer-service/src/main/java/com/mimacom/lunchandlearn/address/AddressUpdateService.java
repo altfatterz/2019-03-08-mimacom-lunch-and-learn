@@ -21,6 +21,8 @@ public class AddressUpdateService {
 
         Customer customer = customerRepository.findById(customerId);
 
+        AddressUpdateEvent event = buildEvent(customerId, customer, request);
+
         customer.setStreetName(request.getStreetName());
         customer.setStreetNr(request.getStreetNr());
         customer.setCity(request.getCity());
@@ -28,7 +30,6 @@ public class AddressUpdateService {
 
         customerRepository.save(customer);
 
-        AddressUpdateEvent event = buildEvent(customerId, customer, request);
         addressUpdateEventProducer.perform(event);
     }
 

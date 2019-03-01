@@ -24,8 +24,6 @@ public class ContractRepositoryImpl implements ContractRepositoryCustom {
 
         Update update = new Update().inc("products.$.price", value);
 
-        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Contract.class);
-
-        System.out.println(updateResult.getMatchedCount() + ":" + updateResult.getModifiedCount());
+        mongoTemplate.updateFirst(query, update, Contract.class);
     }
 }
