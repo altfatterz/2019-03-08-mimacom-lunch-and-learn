@@ -1,0 +1,4 @@
+stubrunner:
+  stubsMode: LOCAL
+  ids:
+    - com.mimacom.lunchandlearn:contract-service:+:9876

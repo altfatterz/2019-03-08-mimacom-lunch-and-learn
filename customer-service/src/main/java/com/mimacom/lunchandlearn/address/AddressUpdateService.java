@@ -1,29 +1,25 @@
 package com.mimacom.lunchandlearn.address;
 
-import com.mimacom.lunchandlearn.address.AddressUpdateEvent.Address;
 import com.mimacom.lunchandlearn.customer.Customer;
 import com.mimacom.lunchandlearn.customer.CustomerRepository;
 import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AddressUpdateService {
 
-    private final Source source;
-
     private final CustomerRepository customerRepository;
 
-    public AddressUpdateService(Source source, CustomerRepository customerRepository) {
-        this.source = source;
+    private final AddressUpdateEventProducer addressUpdateEventProducer;
+
+    public AddressUpdateService(Source source, CustomerRepository customerRepository, AddressUpdateEventProducer addressUpdateEventProducer) {
         this.customerRepository = customerRepository;
+        this.addressUpdateEventProducer = addressUpdateEventProducer;
     }
 
     public void updateAddress(Long customerId, AddressUpdateRequest request) {
 
         Customer customer = customerRepository.findById(customerId);
-
-        AddressUpdateEvent event = buildEvent(customerId, customer, request);
 
         customer.setStreetName(request.getStreetName());
         customer.setStreetNr(request.getStreetNr());
@@ -32,19 +28,20 @@ public class AddressUpdateService {
 
         customerRepository.save(customer);
 
-        source.output().send(MessageBuilder.withPayload(event).build());
+        AddressUpdateEvent event = buildEvent(customerId, customer, request);
+        addressUpdateEventProducer.perform(event);
     }
 
     private AddressUpdateEvent buildEvent(Long customerId, Customer customer, AddressUpdateRequest request) {
         return AddressUpdateEvent.builder()
                 .customerId(customerId)
-                .currentAddress(Address.builder()
+                .currentAddress(AddressUpdateEvent.Address.builder()
                         .streetName(customer.getStreetName())
                         .streetNr(customer.getStreetNr())
                         .city(customer.getCity())
                         .postCode(customer.getPostCode())
                         .build())
-                .newAddress(Address.builder()
+                .newAddress(AddressUpdateEvent.Address.builder()
                         .streetName(request.getStreetName())
                         .streetNr(request.getStreetNr())
                         .city(request.getCity())

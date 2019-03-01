@@ -20,7 +20,6 @@ Confluent Control Center
 http://localhost:9021
 ```
 
-
 ```bash
 echo '{
         "city": "Bern",
@@ -38,3 +37,34 @@ echo '{
         "streetNr": "87"
     }' | http patch :8080/customers/1/address
 ```
+
+
+```yaml
+stubrunner:
+  stubsMode: LOCAL
+  ids:
+    - com.mimacom.lunchandlearn:contract-service:+:9876
+```
+
+```bash
+$ spring cloud stubrunner
+```
+
+```bash
+$ http :8750/stubs
+
+{
+  com.mimacom.lunchandlearn:contract-service:0.0.1-SNAPSHOT:stubs: 9876
+}
+```
+
+```bash
+$ http :9876/ping
+OK
+```
+
+```bash
+$ http :9876/contracts?customerId=1
+```
+
+
