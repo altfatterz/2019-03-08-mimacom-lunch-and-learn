@@ -12,8 +12,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>contract-service</module>
-        <module>customer-service</module>
+        <module>contract-service</module> <!-- producer -->
+        <module>customer-service</module> <!-- producer/consumer -->
+        <module>product-service</module> <!-- consumer -->
     </modules>
 
 </project>

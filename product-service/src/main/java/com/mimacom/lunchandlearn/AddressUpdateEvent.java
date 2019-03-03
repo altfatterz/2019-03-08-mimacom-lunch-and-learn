@@ -1,4 +1,4 @@
-package com.mimacom.lunchandlearn.address;
+package com.mimacom.lunchandlearn;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

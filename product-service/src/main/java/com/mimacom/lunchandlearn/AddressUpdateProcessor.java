@@ -1,4 +1,4 @@
-package com.mimacom.lunchandlearn.address;
+package com.mimacom.lunchandlearn;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.StreamListener;
