@@ -2,7 +2,6 @@ spring:
   application:
     name: contract-service
 
-
 server:
   port: 9090
 

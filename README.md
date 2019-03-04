@@ -21,11 +21,50 @@ http://localhost:9021
 ```
 
 ```bash
+http :8080/customers/1
+```
+
+```json
+{
+    "_links": {
+        "update-address": {
+            "href": "http://localhost:8080/customers/1/address"
+        }
+    },
+    "address": {
+        "canton": "Zurich",
+        "city": "Zurich",
+        "postCode": "8045",
+        "streetName": "Manessestrasse",
+        "streetNr": "87"
+    },
+    "birthDate": "1983-03-08",
+    "contract": {
+        "products": [
+            "Basic health insurance FAMILY_DOCTOR_MODEL --- CHF 295.6",
+            "Supplementary outpatient insurance PLUS --- CHF 19.6",
+            "Supplementary hospital insurance HOSPITA_FLEX --- CHF 9.4",
+            "Supplementary dental insurance DENTAL --- CHF 26.0",
+            "Legal expenses insurance in health matters PROTECT --- CHF 1.5"
+        ],
+        "validFrom": "2017-01-03"
+    },
+    "email": "johndoe@gmail.com",
+    "gender": "MALE",
+    "mobile": "+4111223344",
+    "name": "John Doe"
+}
+```
+
+Messaging example
+
+```bash
 echo '{
         "city": "Bern",
         "postCode": "3011",
         "streetName": "Seilerstrasse",
-        "streetNr": "6"
+        "streetNr": "6",
+        "canton":"Bern"
     }' | http patch :8080/customers/1/address
 ```
 

@@ -41,6 +41,8 @@ public class Customer {
 
     private String city;
 
+    private String canton;
+
     @Transient
     private Contract contract;
 

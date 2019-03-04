@@ -15,4 +15,6 @@ public class AddressUpdateRequest {
 
     private final String city;
 
+    private final String canton;
+
 }

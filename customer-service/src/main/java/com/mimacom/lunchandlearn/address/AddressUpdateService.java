@@ -26,6 +26,7 @@ public class AddressUpdateService {
         customer.setStreetNr(request.getStreetNr());
         customer.setCity(request.getCity());
         customer.setPostCode(request.getPostCode());
+        customer.setCanton(request.getCanton());
 
         customerRepository.save(customer);
 
@@ -40,12 +41,14 @@ public class AddressUpdateService {
                         .streetNr(customer.getStreetNr())
                         .city(customer.getCity())
                         .postCode(customer.getPostCode())
+                        .canton(customer.getCanton())
                         .build())
                 .newAddress(AddressUpdateEvent.Address.builder()
                         .streetName(request.getStreetName())
                         .streetNr(request.getStreetNr())
                         .city(request.getCity())
                         .postCode(request.getPostCode())
+                        .canton(request.getCanton())
                         .build()
                 )
                 .build();

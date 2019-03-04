@@ -45,6 +45,7 @@ public class CustomerRestController {
                         .streetNr(customer.getStreetNr())
                         .postCode(customer.getPostCode())
                         .city(customer.getCity())
+                        .canton(customer.getCanton())
                         .build())
                 .contract(CustomerResource.Contract.builder()
                         .validFrom(customer.getContract().getValidFrom())

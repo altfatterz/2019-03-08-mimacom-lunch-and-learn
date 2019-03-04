@@ -1,2 +1,2 @@
-INSERT INTO customers (id, first_name, last_name, birth_date, mobile, email, gender, street_name, street_nr, postcode, city)
-  VALUES (1, 'John', 'Doe', '1983-03-08', '+4111223344', 'johndoe@gmail.com', 'MALE', 'Manessestrasse', '87', '8045', 'Zurich');
+INSERT INTO customers (id, first_name, last_name, birth_date, mobile, email, gender, street_name, street_nr, postcode, city, canton)
+  VALUES (1, 'John', 'Doe', '1983-03-08', '+4111223344', 'johndoe@gmail.com', 'MALE', 'Manessestrasse', '87', '8045', 'Zurich', 'Zurich');

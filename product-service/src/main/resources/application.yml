@@ -1,6 +1,12 @@
 spring:
+  application:
+    name: product-service
+
   cloud:
     stream:
       bindings:
         input:
           destination: customer-updates
+
+server:
+  port: 7070

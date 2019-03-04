@@ -2,13 +2,13 @@ package com.mimacom.lunchandlearn.customer;
 
 import com.mimacom.lunchandlearn.customer.Customer.Gender;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
+@Getter
 @Builder
 public class CustomerResource extends ResourceSupport {
 
@@ -26,7 +26,7 @@ public class CustomerResource extends ResourceSupport {
 
     private Contract contract;
 
-    @Data
+    @Getter
     @Builder
     static class Address {
 
@@ -38,9 +38,11 @@ public class CustomerResource extends ResourceSupport {
 
         private String city;
 
+        private String canton;
+
     }
 
-    @Data
+    @Getter
     @Builder
     static class Contract {
 
