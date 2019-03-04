@@ -2,7 +2,6 @@ package com.mimacom.lunchandlearn.address;
 
 import com.mimacom.lunchandlearn.customer.Customer;
 import com.mimacom.lunchandlearn.customer.CustomerRepository;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +11,7 @@ public class AddressUpdateService {
 
     private final AddressUpdateEventProducer addressUpdateEventProducer;
 
-    public AddressUpdateService(Source source, CustomerRepository customerRepository, AddressUpdateEventProducer addressUpdateEventProducer) {
+    public AddressUpdateService(CustomerRepository customerRepository, AddressUpdateEventProducer addressUpdateEventProducer) {
         this.customerRepository = customerRepository;
         this.addressUpdateEventProducer = addressUpdateEventProducer;
     }

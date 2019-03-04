@@ -25,5 +25,12 @@ public class AddressUpdateEvent {
 
         private final String city;
 
+        private final String canton;
+
     }
+
+    public boolean isSameRegion() {
+        return currentAddress.canton.equals(newAddress.canton);
+    }
+
 }

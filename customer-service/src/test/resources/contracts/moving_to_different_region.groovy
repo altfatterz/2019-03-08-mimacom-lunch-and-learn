@@ -1,9 +1,9 @@
 import org.springframework.cloud.contract.spec.Contract
 
 Contract.make {
-    label "moving_to_different_region"
+    label "move_to_different_region"
     input {
-        triggeredBy "movingToDifferentRegion()"
+        triggeredBy "moveToDifferentRegion()"
     }
     outputMessage {
         sentTo "customer-updates"
@@ -12,14 +12,16 @@ Contract.make {
                 currentAddress: [
                         streetName: $(nonBlank()),
                         streetNr  : $(nonBlank()),
-                        city      : 'Zurich',
+                        city      : $(nonBlank()),
                         postCode  : $(nonBlank()),
+                        canton    : 'Zurich'
                 ],
                 newAddress: [
                         streetName: $(nonBlank()),
                         streetNr  : $(nonBlank()),
-                        city      : 'Bern',
+                        city      : $(nonBlank()),
                         postCode  : $(nonBlank()),
+                        canton    : 'Bern'
                 ]
         )
         headers {

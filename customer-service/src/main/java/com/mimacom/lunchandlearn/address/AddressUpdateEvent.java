@@ -25,5 +25,6 @@ public class AddressUpdateEvent {
 
         private String city;
 
+        private String canton;
     }
 }

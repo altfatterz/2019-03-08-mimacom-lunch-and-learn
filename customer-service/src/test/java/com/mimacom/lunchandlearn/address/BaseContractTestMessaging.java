@@ -16,7 +16,7 @@ public abstract class BaseContractTestMessaging {
     @Autowired
     private AddressUpdateEventProducer addressUpdateEventProducer;
 
-    public void movingToDifferentRegion() {
+    public void moveToDifferentRegion() {
 
         AddressUpdateEvent event = AddressUpdateEvent.builder()
                 .customerId(2L)
@@ -25,12 +25,14 @@ public abstract class BaseContractTestMessaging {
                         .streetNr("123")
                         .city("Zurich")
                         .postCode("8001")
+                        .canton("Zurich")
                         .build())
                 .newAddress(Address.builder()
                         .streetName("aaa")
                         .streetNr("123")
                         .city("Bern")
                         .postCode("3011")
+                        .canton("Bern")
                         .build())
                 .build();
 

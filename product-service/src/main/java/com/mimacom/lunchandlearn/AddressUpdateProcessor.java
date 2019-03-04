@@ -9,16 +9,18 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AddressUpdateProcessor {
 
-    private final AddressUpdateService addressUpdateService;
+    private final ProductPriceService productPriceService;
 
-    public AddressUpdateProcessor(AddressUpdateService addressUpdateService) {
-        this.addressUpdateService = addressUpdateService;
+    public AddressUpdateProcessor(ProductPriceService productPriceService) {
+        this.productPriceService = productPriceService;
     }
 
     @StreamListener(Sink.INPUT)
     public void processAddressUpdate(AddressUpdateEvent event) {
         log.info("processing event {}", event);
-        addressUpdateService.process(event);
+        if (!event.isSameRegion()) {
+            productPriceService.updateProductPriceForCustomer(event.getCustomerId());
+        }
     }
 
 }
