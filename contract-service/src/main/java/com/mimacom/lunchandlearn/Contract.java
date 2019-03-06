@@ -29,7 +29,7 @@ public class Contract {
 
         private String id;
 
-        private String name;
+        private String productName;
 
         private String description;
 
