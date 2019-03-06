@@ -294,3 +294,5 @@ fly -t ci login --concourse-url http://127.0.0.1:8080 -u test -p test
 fly -t ci set-pipeline -p lunch-and-learn -c ci/pipeline.yml 
 fly -t ci unpause-pipeline -p lunch-and-learn
 ```
+
+![concourse-ci](readme-images/concourse-ci.png)
