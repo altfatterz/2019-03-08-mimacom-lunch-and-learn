@@ -26,7 +26,7 @@ management:
       exposure.include: '*'
 
 server:
-  port: 8080
+  port: 9090
 
 logging.level:
   org.hibernate:

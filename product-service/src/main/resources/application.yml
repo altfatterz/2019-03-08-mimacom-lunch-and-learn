@@ -9,4 +9,4 @@ spring:
           destination: customer-updates
 
 server:
-  port: 7070
+  port: 9093
