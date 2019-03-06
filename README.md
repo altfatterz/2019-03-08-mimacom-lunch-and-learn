@@ -1,6 +1,14 @@
 ## Setup up locally
 
-1. Start Eureka. With [Spring CLI](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-installing-spring-boot.html) (and [Spring Cloud pluging](https://cloud.spring.io/spring-cloud-cli/)) is very easy. Note, with the latest version I had problems, I am using here earlier versions.
+1. Clone and build the project:
+
+```bash
+$ git clone https://github.com/altfatterz/2019-03-08-mimacom-lunch-and-learn
+$ cd 2019-03-08-mimacom-lunch-and-learn
+$ mvn clean install
+```
+
+2. Start Eureka. With [Spring CLI](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-installing-spring-boot.html) (and [Spring Cloud plugin](https://cloud.spring.io/spring-cloud-cli/)) is very easy. Note, with the latest version I had problems, I am using here earlier versions.
 
 ```bash
 $ spring --version
@@ -12,7 +20,7 @@ $ spring cloud eureka
 
 Eureka will be available at `http:localhost:8761`
 
-2. Start Kafka. With [Confluent CLI](https://docs.confluent.io/current/cli/index.html) is very easy. 
+3. Start Kafka. With [Confluent CLI](https://docs.confluent.io/current/cli/index.html) is very easy. 
 
 ```bash
 $ confluent start
@@ -31,9 +39,13 @@ zookeeper is [UP]
 
 The `Confluent Control Center` will be available at `http://localhost:9021`
 
-3. Start the provided three Spring Boot services.
+![confluent-control-center](readme-images/confluent-control-center.png)
 
-4. Access the `customer-service`
+4. Start the provided three Spring Boot services. (`contract-service`, `customer-service`, `product-service`). They will all register with Eureka.
+
+![eureka-with-services](readme-images/eureka-with-services.png)
+
+5. Access the `customer-service`
 
 ```bash
 $ http :9090/customers/1
@@ -71,9 +83,9 @@ $ http :9090/customers/1
 }
 ```
 
-This service is calling under the hood the `product-service` when constructing the `contract` field
+This service is calling under the hood the `contract-service` when constructing the `contract` field
 
-4. Access the `contract-service`
+6. Access the `contract-service`
 
 ```bash
 $ http :9091/contracts\?customerId=1
@@ -127,7 +139,7 @@ $ http :9091/contracts\?customerId=1
 }
 ```
 
-5. Update the customer's address using: (see the `update-address` link in the `customers/1` response)
+7. Update the customer's address using: (see the `update-address` link in the `customers/1` response)
 
 ```bash
 $ echo '{
@@ -152,8 +164,13 @@ This triggers and `AddressUpdateEvent` which is sent to `product-service` via me
 ```
 
 
-## StubRunner 
+## StubRunner running locally
 
+```bash
+$ spring cloud stubrunner
+```
+
+It is using the following configuration `stubrunner.yml`
 
 ```yaml
 stubrunner:
@@ -162,9 +179,7 @@ stubrunner:
     - com.mimacom.lunchandlearn:contract-service:+:9876
 ```
 
-```bash
-$ spring cloud stubrunner
-```
+To see the registered stubs:
 
 ```bash
 $ http :8750/stubs
@@ -174,21 +189,108 @@ $ http :8750/stubs
 }
 ```
 
+A matching request:
+
+```bash
+$ http :9876/contracts\?customerId=123
+```
+
+A non-matching request:
+
+```bash
+$ http :9876/contract\?customerId=123
+```
+
+```
+Request was not matched
+                                               =======================
+
+-----------------------------------------------------------------------------------------------------------------------
+| Closest stub                                             | Request                                                  |
+-----------------------------------------------------------------------------------------------------------------------
+                                                           |
+GET                                                        | GET
+/contracts                                                 | /contract?customerId=123                            <<<<< URL does not match
+                                                           |
+Query: customerId [matches] [0-9]+                         | customerId: 123
+                                                           |
+                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+```
+
+Ping endpoint:
+
 ```bash
 $ http :9876/ping
 OK
 ```
 
-```bash
-$ http :9876/contracts?customerId=1
-```
-
-
 ## Concourse CI
 
+[Concourse](https://concourse-ci.org/) is an open-source CI/CD tool.
+
+The project contains a simple pipeline.
+
+```yaml
+resources:
+
+- name: source-code
+  type: git
+  check_every: 5s
+  source:
+    uri: https://github.com/altfatterz/2019-03-08-mimacom-lunch-and-learn.git
+    branch: master
+
+jobs:
+
+- name: contract-service
+  plan:
+  - get: source-code
+    trigger: true
+  - task: contract-service
+    file: source-code/ci/tasks/contract-service.yml
+
+- name: customer-service
+  plan:
+  - get: source-code
+    passed:
+    - contract-service
+    trigger: true
+  - task: customer-service
+    file: source-code/ci/tasks/customer-service.yml
+
+- name: product-service
+  plan:
+  - get: source-code
+    passed:
+    - customer-service
+    trigger: true
+  - task: product-service
+    file: source-code/ci/tasks/product-service.yml
+```
+
+1. Start Concourse locally using `Docker Compose`
+
+```bash
+$ wget https://concourse-ci.org/docker-compose.yml
+$ docker-compose up
+```
+
+2. Install Concourse CLI
+
+```bash
+$ brew cask install fly
+```  
+
+3. Login to Concourse
+
+```bash
+fly -t ci login --concourse-url http://127.0.0.1:8080 -u test -p test
+```
+
+4. Set up a pipeline and unpause it.
 
 ```bash
 fly -t ci set-pipeline -p lunch-and-learn -c ci/pipeline.yml 
 fly -t ci unpause-pipeline -p lunch-and-learn
 ```
-
