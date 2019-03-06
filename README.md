@@ -107,3 +107,10 @@ $ http :9876/contracts?customerId=1
 ```
 
 
+# flyway
+
+```bash
+fly -t ci set-pipeline -p lunch-and-learn -c ci/pipeline.yml 
+fly -t ci unpause-pipeline -p lunch-and-learn
+```
+

@@ -7,3 +7,7 @@ spring:
     circuit:
       breaker:
         enabled: false
+
+
+stubrunner:
+  repositoryRoot: http://35.204.61.226/artifactory/example-repo-local/

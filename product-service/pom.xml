@@ -109,6 +109,13 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>myArtifactory</id>
+            <url>http://35.204.61.226/artifactory/example-repo-local/</url>
+        </repository>
+    </distributionManagement>
+
     <repositories>
         <repository>
             <id>spring-milestones</id>

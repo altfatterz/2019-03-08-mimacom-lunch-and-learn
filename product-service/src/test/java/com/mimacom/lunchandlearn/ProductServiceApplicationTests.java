@@ -7,13 +7,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.StubTrigger;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("integration")
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.LOCAL, ids = "com.mimacom.lunchandlearn:customer-service")
+@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.REMOTE, ids = "com.mimacom.lunchandlearn:customer-service")
 public class ProductServiceApplicationTests {
 
     @Autowired

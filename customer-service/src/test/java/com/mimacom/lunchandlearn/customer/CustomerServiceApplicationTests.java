@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureStubRunner(ids = "com.mimacom.lunchandlearn:contract-service", stubsMode = StubsMode.LOCAL)
+@AutoConfigureStubRunner(ids = "com.mimacom.lunchandlearn:contract-service", stubsMode = StubsMode.REMOTE)
 public class CustomerServiceApplicationTests {
 
     @Autowired

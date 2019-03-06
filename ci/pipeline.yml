@@ -1,0 +1,35 @@
+resources:
+
+- name: source-code
+  type: git
+  check_every: 5s
+  source:
+    uri: https://github.com/altfatterz/2019-03-08-mimacom-lunch-and-learn.git
+    branch: master
+
+jobs:
+
+- name: contract-service
+  plan:
+  - get: source-code
+    trigger: true
+  - task: contract-service
+    file: source-code/ci/tasks/contract-service.yml
+
+- name: customer-service
+  plan:
+  - get: source-code
+    passed:
+    - contract-service
+    trigger: true
+  - task: customer-service
+    file: source-code/ci/tasks/customer-service.yml
+
+- name: product-service
+  plan:
+  - get: source-code
+    passed:
+    - customer-service
+    trigger: true
+  - task: product-service
+    file: source-code/ci/tasks/product-service.yml
