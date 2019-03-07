@@ -296,3 +296,8 @@ fly -t ci unpause-pipeline -p lunch-and-learn
 ```
 
 ![concourse-ci](readme-images/concourse-ci.png)
+
+
+```bash
+fly -t ci destroy-pipeline -p lunch-and-learn
+```
