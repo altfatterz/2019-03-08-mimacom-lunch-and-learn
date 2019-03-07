@@ -54,6 +54,8 @@ public class Customer {
 
         private List<String> products;
 
+        private Double monthlyPremium;
+
     }
 
     enum Gender {

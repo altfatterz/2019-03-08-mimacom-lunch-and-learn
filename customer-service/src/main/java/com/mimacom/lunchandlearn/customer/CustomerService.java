@@ -31,6 +31,9 @@ public class CustomerService {
         List<String> products = contract.getProducts().stream()
                 .map(product -> product.getName() + " " + product.getType() + " --- CHF " + product.getPrice())
                 .collect(Collectors.toList());
-        return new Customer.Contract(contract.getValidFrom(), products);
+
+        Double monthlyPremium = contract.getProducts().stream().map(p -> p.getPrice()).reduce(0.0, Double::sum);
+
+        return new Customer.Contract(contract.getValidFrom(), products, monthlyPremium);
     }
 }

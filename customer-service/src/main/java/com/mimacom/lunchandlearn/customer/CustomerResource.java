@@ -49,6 +49,8 @@ public class CustomerResource extends ResourceSupport {
         private LocalDate validFrom;
 
         private List<String> products;
+
+        private Double monthlyPremium;
     }
 
 }

@@ -50,6 +50,7 @@ public class CustomerRestController {
                 .contract(CustomerResource.Contract.builder()
                         .validFrom(customer.getContract().getValidFrom())
                         .products(customer.getContract().getProducts())
+                        .monthlyPremium(customer.getContract().getMonthlyPremium())
                         .build())
                 .build();
     }
