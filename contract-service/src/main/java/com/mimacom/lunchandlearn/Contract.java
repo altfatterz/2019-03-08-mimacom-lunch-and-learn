@@ -37,7 +37,7 @@ public class Contract {
 
         private Boolean isBasic;
 
-        private Double amount;
+        private Double price;
 
         private Integer deductible;
 
