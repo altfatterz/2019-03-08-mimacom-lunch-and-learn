@@ -33,7 +33,7 @@ public class DataInitializer {
                                 .type("FAMILY_DOCTOR_MODEL")
                                 .isBasic(true)
                                 .description("If you’re ill, always go to your chosen family doctor first.")
-                                .price(295.60)
+                                .amount(295.60)
                                 .deductible(2500)
                                 .withAccidentCover(false)
                                 .build(),
@@ -42,28 +42,28 @@ public class DataInitializer {
                                 .name("Supplementary outpatient insurance")
                                 .type("PLUS")
                                 .description("Basic supplementary insurance for preventative measures, spectacles, sport and more")
-                                .price(19.60)
+                                .amount(19.60)
                                 .build(),
                         Product.builder()
                                 .id(UUID.randomUUID().toString())
                                 .name("Supplementary hospital insurance")
                                 .type("HOSPITA_FLEX")
                                 .description("Multiple occupancy rooms across Switzerland")
-                                .price(9.40)
+                                .amount(9.40)
                                 .build(),
                         Product.builder()
                                 .id(UUID.randomUUID().toString())
                                 .name("Supplementary dental insurance")
                                 .type("DENTAL")
                                 .description("Coverage 50%, max. CHF 1000")
-                                .price(26.00)
+                                .amount(26.00)
                                 .build(),
                         Product.builder()
                                 .id(UUID.randomUUID().toString())
                                 .name("Legal expenses insurance in health matters")
                                 .type("PROTECT")
                                 .description("Protection in legal disputes with medical service providers regarding health insurance")
-                                .price(1.50)
+                                .amount(1.50)
                                 .build())
 
         ));
